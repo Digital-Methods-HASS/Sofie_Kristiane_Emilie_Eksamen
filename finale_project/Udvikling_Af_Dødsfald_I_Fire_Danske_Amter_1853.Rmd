@@ -1,0 +1,331 @@
+---
+title: "Udviklingen af Dødsfald i Fire Danske Amter, 1853"
+author: "Sofie, Kristiane og Emilie"
+date: "Oprettet 7. maj 2025, opdateret ?? maj 2025"
+output:
+  html_document:
+    toc: true         
+    toc_depth: 2  
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+# Udviklingen af dødsfald i Fire Danske Amter, 1853
+
+UDFYLD!!
+
+
+## Opret workspace
+
+```{r dir.create, warning = FALSE}
+dir.create("data")
+dir.create("figures")
+```
+
+## Indlæsning af bibliotekspakker
+
+```{r library, warning = FALSE}
+library(tidyverse)
+library(ggplot2)
+library(leaflet)
+library(htmlwidgets)
+library(googlesheets4)
+library(dplyr)
+```
+
+## Geografisk placering af amterne i Danmark
+
+Vi viser vha. leaflet, hvor amterne er placeret i Danmark.
+
+### Opret et lagdelt kort af Danmark
+
+```{r lagdelt_kort, warning=FALSE}
+# Step 1: Opret et grundkort af Danmark
+danmark_grundkort <- leaflet() %>%   
+  setView(10.600, 55.833, zoom = 6) # Koordinaterne (Danmark)
+
+# Vælg baggrundsmuligheder for kort
+esri <- grep("^Esri", providers, value = TRUE)
+
+# Vælg baggrunde blandt de tilgængelige provider-tiles.
+# For at se mulighederne, gå til: https://leaflet-extras.github.io/leaflet-providers/preview/
+# Kør de følgende tre linjer sammen!
+for (provider in esri) {
+  danmark_grundkort <- danmark_grundkort %>% addProviderTiles(provider, group = provider)
+}
+
+danmark_grundkort
+
+# Step 2: Lav lagdelt kort over Danmark i forlængelse af step 1
+danmark_kort <- danmark_grundkort %>%
+  addLayersControl(baseGroups = names(esri),
+                   options = layersControlOptions(collapsed = T)) %>%
+  addMiniMap(tiles = esri[[1]], toggleDisplay = TRUE,
+             position = "bottomright") %>%
+  addMeasure(
+    position = "bottomleft",
+    primaryLengthUnit = "meters",     # måleenhed for længde
+    primaryAreaUnit = "sqmeters",     # måleenhed for areal
+    activeColor = "#3D535D",
+    completedColor = "#7D4479") %>% 
+  htmlwidgets::onRender("
+                        function(el, x) {
+                        var myMap = this;
+                        myMap.on('baselayerchange',
+                        function (e) {
+                        myMap.minimap.changeLayer(L.tileLayer.provider(e.name));
+                        })
+                        }") %>% 
+  addControl("", position = "topright")
+
+# Se og gem resultat
+danmark_kort
+
+
+saveWidget(danmark_kort, file = "figures/danmark_kort.html", selfcontained = TRUE)
+```
+
+### Opret kort over amternes placering
+
+```{r amt_kort, warning=FALSE}
+gs4_deauth()
+
+# Step 1: Indlæsning af amternes koordinater fra Google Sheet
+amternes_koordinater <- read_sheet("https://docs.google.com/spreadsheets/d/1wWFXoOcPVildEGEWJXmSwB7yMnzd51820B3E2bKkjr8/edit?usp=sharing",
+                     col_types = "ccnn",
+                     range = "amternes_koordinater")  
+
+# Step 2: Indlæsning af amternes koordinater i danmark_kort
+
+danmark_amt_kort <- danmark_kort %>% 
+  addTiles() %>%  # Tilføj standard baggrundskort
+  addMarkers(
+    lng = amternes_koordinater$Længdegrader,  # længdegrad for hvert punkt
+    lat = amternes_koordinater$Breddegrader,  # breddegrad for hvert punkt
+    popup = paste(amternes_koordinater$Stednavn, "<br>")  # vis navnet på stedet i en popup
+  )
+
+# Se og gem resultat
+danmark_amt_kort
+
+saveWidget(danmark_amt_kort, file = "figures/danmark_amt_kort.html", selfcontained = TRUE)
+```
+
+## Facet over udvklingen af dødsfald i de fire amter 1810-1915
+
+### Indlæsning af data fra GitHub og inspektion
+
+Vi indlæser vores data fra GitHub og tjekker yderligere om indlæsningen er korrekt vha. funktionen glimpse.
+
+```{r GitHub_data, warning=FALSE}
+staden_københavn <- read_csv("https://raw.githubusercontent.com/Digital-Methods-HASS/Sofie_Kristiane_Emilie_Eksamen/refs/heads/main/finale_project/data/370922_Staden_K%C3%B8benhavn_all_years.csv")
+
+#glimpse(staden_københavn)
+
+ålborg <- read_csv("https://raw.githubusercontent.com/Digital-Methods-HASS/Sofie_Kristiane_Emilie_Eksamen/refs/heads/main/finale_project/data/118819_%C3%85lborg_Amt_all_years.csv")
+
+#glimpse(ålborg)
+
+århus <- read_csv("https://raw.githubusercontent.com/Digital-Methods-HASS/Sofie_Kristiane_Emilie_Eksamen/refs/heads/main/finale_project/data/118846_%C3%85rhus_Amt_all_years.csv")
+
+#glimpse(århus)
+
+odense <- read_csv("https://raw.githubusercontent.com/Digital-Methods-HASS/Sofie_Kristiane_Emilie_Eksamen/refs/heads/main/finale_project/data/118809_Odense_Amt_all_years.csv")
+
+#glimpse(odense)
+```
+
+### Opdeling af udviklingen af dødsfald i de fire amter 1810-1915 vha. ggplot
+
+```{r facet_plot, warning=FALSE}
+# Step 1: Tjek at alle kolonnetyper har de samme typer data.
+#str(staden_københavn)
+#str(ålborg)
+#str(århus)
+#str(odense)
+
+# Step 2: Lav kolonnen 'Date' i datasættene for Århus og Odense fra "character" til Date.
+århus$Date <- as.Date(århus$Date)
+odense$Date <- as.Date(odense$Date)
+
+# Step 3: Samle alle datasættene i et samlet datasæt for at bruge facet-funktionen.
+amt_samlet_data <- bind_rows(
+  mutate(staden_københavn, Stednavn = "Staden København"),
+  mutate(ålborg, Stednavn = "Ålborg"),
+  mutate(århus, Stednavn = "Århus"),
+  mutate(odense, Stednavn = "Odense")
+)
+
+#glimpse(amt_samlet_data)
+
+# Step 4: Opdeling af udvklingen af dødsfald i de fire amter 1810-1915 vha. ggplot  (facet)
+oversigt_over_udviklingen_af_dødsfald_i_de_fire_amter_1810_til_1915  <-  ggplot(amt_samlet_data, aes(x = Date, y = Total, color = Stednavn)) +
+  geom_line() +
+  facet_wrap(~Stednavn, ncol = 2, nrow = 3) +
+  labs(
+    title = "Oversigt over udviklingen af dødsfald i de fire amter 1810-1915",
+    x = "Dato",
+    y = "Total antal af døde"
+  ) +
+  theme_bw()
+
+# Step 5: Se graf
+oversigt_over_udviklingen_af_dødsfald_i_de_fire_amter_1810_til_1915
+
+# Step 5: Gem resulat
+ggsave("figures/facet_plot_dødsfald_de_fire_amter_1810_til_1915.png",
+oversigt_over_udviklingen_af_dødsfald_i_de_fire_amter_1810_til_1915 , width = 15, height = 10)
+
+```
+
+## Samlet visualisering af de fire amter
+
+### Oversigt over dødsfald i fire amter 1810-1915
+```{r oversigt_over_dødsfald_i_fire_amter_1810-1915}
+# Step 1: Lav en samlet graf over dødsfald i de fire amter 1810-1915
+samlet_oversigt_over_udviklingen_af_dødsfald_i_de_fire_amter_1810_til_1915 <- ggplot(amt_samlet_data, aes(x = Date, y = Total, color = Stednavn)) +
+  geom_line() +
+  labs(
+    title = "Samlet oversigt over udviklingen af dødsfald i de fire amter 1810-1915",
+    x = "Dato",
+    y = "Total antal af døde",
+    color = "Amt"  # Titlen på forklaringspanelet
+  ) +
+  theme_bw()
+
+# Step 2: Se graf
+samlet_oversigt_over_udviklingen_af_dødsfald_i_de_fire_amter_1810_til_1915
+
+# Step 3: Gem resultat
+ggsave("figures/samlet_oversigt_over_dødsfald_de_fire_amter_1810_til_1915.png",
+samlet_oversigt_over_udviklingen_af_dødsfald_i_de_fire_amter_1810_til_1915 , width = 15, height = 10)
+
+```
+
+### Oversigt over dødsfald i fire amter 1853
+
+```{r Oversigt_over_dødsfald_i_fire_amter_1853, warning=FALSE}
+# Step 1: Lav en samlet graf over dødsfald i de fire amter i 1853
+samlet_oversigt_over_udviklingen_af_dødsfald_i_de_fire_amter_i_1853 <- ggplot(amt_samlet_data, aes(x = Date, y = Total, color = Stednavn)) +
+  geom_line() +
+  scale_x_date(limits = as.Date(c("1853-01-01", "1853-12-31"))) +
+  labs(
+    title = "Samlet oversigt over udviklingen af dødsfald i de fire amter i 1853",
+    x = "Dato",
+    y = "Total antal af døde",
+    color = "Amt"  # Titlen på forklaringspanelet
+  ) +
+  theme_bw()
+
+# Step 2: Se graf
+samlet_oversigt_over_udviklingen_af_dødsfald_i_de_fire_amter_i_1853
+
+# Step 3: Gem resultat
+ggsave("figures/samlet_oversigt_over_dødsfald_de_fire_amter_1853.png",
+samlet_oversigt_over_udviklingen_af_dødsfald_i_de_fire_amter_i_1853 , width = 15, height = 10)
+```
+
+### Oversigt over dødsfald i de fire amter mellem juni og september 1853
+```{r Dødsfald_i_de_fire_amter_juni_til_september_1853, warning=FALSE}
+# Step 1: Lav en samlet graf over dødsfald i de fire amter mellem juni og september 1853
+samlet_oversigt_over_udviklingen_af_dødsfald_i_de_fire_amter_mellem_juni_og_september_1853 <- ggplot(amt_samlet_data, aes(x = Date, y = Total, color = Stednavn)) +
+  geom_line() +
+  scale_x_date(limits = as.Date(c("1853-06-01", "1853-09-30"))) +
+  labs(
+    title = "Samlet oversigt over udviklingen af dødsfald i de fire amter mellem juni og september 1853",
+    x = "Dato",
+    y = "Total antal af døde",
+    color = "Amt"  # Titlen på forklaringspanelet
+  ) +
+  theme_bw()
+
+# Step 2: Se graf
+samlet_oversigt_over_udviklingen_af_dødsfald_i_de_fire_amter_mellem_juni_og_september_1853
+
+# Step 3: Gem resultat
+ggsave("figures/samlet_oversigt_over_dødsfald_de_fire_amter_juni_til_september_1853.png",
+samlet_oversigt_over_udviklingen_af_dødsfald_i_de_fire_amter_mellem_juni_og_september_1853 , width = 15, height = 10)
+```
+
+Ud fra grafen "Samlet oversigt over udviklingen af dødsfald i de fire amter mellem juni og september 1853" kan vi konstatere ud fra dataen, at der en voldsom stigning i totale dødfald i Staden København amt i månederne juni til september i 1853.
+Udfra grafen kan vi se at dødsantallet falder i slutningen af august måned i Staden København Amt, mens der sker en mindre stigning i totale dødsfald i Ålborg Amt. 
+
+## Overdødelighed
+### Hvor mange døde ift. indbyggertallet i Staden København Amt?
+
+```{r beregning_af_overdødelighed, warning=FALSE}
+# Step 1: Find det samlede antal af døde i Staden København Amt i 1853
+staden_københavn %>%
+  filter(format(Date, "%Y") == "1853") %>%  
+  summarise(samlet_dødstal = sum(Total, na.rm = TRUE))
+
+# Resultat: 24989 antal døde i Staden Københavm Amt i 1853
+
+# Step 2: Samlet dødstal fra 1845-1860 (uden 1853)
+staden_københavn %>%
+  filter(format(Date, "%Y") %in% c("1845", "1846", "1847", "1848", "1849", "1850",
+                                   "1851", "1852", "1854", "1855", "1856",
+                                   "1857", "1858", "1859", "1860")) %>%
+  summarise(samlet_dødstal = sum(Total, na.rm = TRUE))
+
+# Resultat: 213479 antal døde i Staden København fra 1845-1860 (uden 1853)
+
+# Step 3: Beregn gennemsnittet af dødstal i perioden
+213479 / 15
+
+# Resultat: Gennemsnittet af dødstal pr. år er ~14232 personer.
+
+# Step 4: Beregn overdødeligheden for Staden København Amt 1853
+24989-14232
+
+# Resultat: Overdødeligheden er 10757
+
+# Step 5: Beregn overdødeligheden i procent
+(10757/14232)*100
+
+# Resultat: Overdødeligheden er ~76%
+```
+
+## Visualisere overdødelighed pr. 100.000 indbygger i Staden København 1853
+
+```{r overdødelighed_kbh_1853}
+# Step 1: Beregn dødsfald pr. 100.000 indbygger i Staden København Amt
+staden_københavn <- staden_københavn %>%
+  mutate(Dødsfald_pr_100k = (Total / 129695) * 100000)
+
+# Step 2: Udvælgelse af året 1853
+staden_københavn_1853 <- staden_københavn %>%
+  filter(format(Date, "%Y") == "1853")
+
+# Step 3: Lav gennemsnit til object (Forventet dødsfald i Staden København)
+gennemsnit_dødsfald <- 14232/365
+
+# Step 4: Udregn gennemsnittet af forventet dødsfald pr. 100.000 indbygger i Standen København Amt 1853
+gennemsnit_pr_100k <- (gennemsnit_dødsfald / 129695) * 100000
+
+# Step 5: Visualisere dødsfald pr. 100.000 indbygger i Staden København 1853
+overdødelighed_pr._100.000_indbygger_i_Staden_København_1853 <- ggplot(staden_københavn_1853, aes(x = Date, y = Dødsfald_pr_100k))+
+  geom_line(aes(color = "Dødsfald pr. 100k")) +
+  geom_hline(aes(yintercept = gennemsnit_pr_100k, linetype = "Gennemsnit i total dødsfald pr. 100k"), color = "red") +
+  scale_color_manual(values = c("Dødsfald pr. 100k" = "blue")) +
+  scale_linetype_manual(values = c("Gennemsnit i total dødsfald pr. 100k" = "dashed", "Årstal" = "dotted")) +
+  labs(
+    title = "Overdødelighed pr. 100.000 indbygger i Staden København 1853",
+    x = "Dato",
+    y = "Dødsfald pr. 100.000",
+    color = NULL,
+    linetype = NULL
+  ) +
+  theme_bw()
+
+# Step 6: Se graf
+overdødelighed_pr._100.000_indbygger_i_Staden_København_1853
+
+# Step 7: Gem resultat
+ggsave("figures/overdødelighed_pr._100.000_indbygger_Staden_København_1853.png",
+overdødelighed_pr._100.000_indbygger_i_Staden_København_1853 , width = 15, height = 10)
+
+```
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
