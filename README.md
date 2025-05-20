@@ -1,6 +1,6 @@
 # Sofie_Kristiane_Emilie_Eksamen
 
-## Eksamen: Gruppemedlemmer:
+## Gruppemedlemmer:
 - Sofie Schmidt Madsen - 202205698 
 - Emilie Andersen - 202409115 
 - Kristiane Morbech Clausen - 202407405
