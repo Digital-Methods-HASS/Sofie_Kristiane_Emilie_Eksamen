@@ -1,3 +1,38 @@
 Vores benyttede datasæt er lavet ud fra data fra:
 Rasmus Kristoffer Pedersen og PandemiX Center of Excellence, Roskilde Universitet, Danmark
 https://github.com/PandemiXcenter/SignatureFeatures19thCentury/tree/main
+
+
+118809_Odense_Amt_all_years.csv
+Overblikket over antallet af dødsfald for Odense Amt fra 1810-1915. Data indsamlet og bearbejdet af Rasmus Kristoffer Pedersen og PandemiX. Samlet i en samlet csv.-fil af Søren Kølholt Poder. 
+Datasættet indeholder følgende kolonner: Date, Stillborn, 0, 1-4, 5-9, 10-14, 15-19, 20-24, 25-29, 30-34, 35-39, 40-44, 45-49, 50-54, 55-59, 60-64, 65-69, 70-74, 75-79, 80+, No age, Total, Male, Female, objId og area. 
+Se: https://github.com/Digital-Methods-HASS/Sofie_Kristiane_Emilie_Eksamen/tree/main/finale_project/data 
+
+118819_Ålborg_Amt_all_years.csv
+Overblikket over antallet af dødsfald for Ålborg Amt fra 1810-1915 
+Data indsamlet og bearbejdet af Rasmus Kristoffer Pedersen og PandemiX. Samlet i en samlet csv.-fil af Søren Kølholt Poder. 
+Datasættet indeholder følgende kolonner: Date, Stillborn, 0, 1-4, 5-9, 10-14, 15-19, 20-24, 25-29, 30-34, 35-39, 40-44, 45-49, 50-54, 55-59, 60-64, 65-69, 70-74, 75-79, 80+, No age, Total, Male, Female, objId og area. 
+Se: https://github.com/Digital-Methods-HASS/Sofie_Kristiane_Emilie_Eksamen/tree/main/finale_project/data 
+
+118846_Århus_Amt_all_years.csv
+Overblikket over antallet af dødsfald for Århus Amt fra 1810-1915 
+Data indsamlet og bearbejdet af Rasmus Kristoffer Pedersen og PandemiX. Samlet i en samlet csv.-fil af Søren Kølholt Poder. 
+Datasættet indeholder følgende kolonner: Date, Stillborn, 0, 1-4, 5-9, 10-14, 15-19, 20-24, 25-29, 30-34, 35-39, 40-44, 45-49, 50-54, 55-59, 60-64, 65-69, 70-74, 75-79, 80+, No age, Total, Male, Female, objId og area. 
+Se: https://github.com/Digital-Methods-HASS/Sofie_Kristiane_Emilie_Eksamen/tree/main/finale_project/data 
+
+370922_Staden_Københavm_all_years.csv
+Overblikket over antallet af dødsfald for Staden København Amt fra 1810-1915 
+Data indsamlet og bearbejdet af Rasmus Kristoffer Pedersen og PandemiX. Samlet i en samlet csv.-fil af Søren Kølholt Poder. 
+Datasættet indeholder følgende kolonner: Date, Stillborn, 0, 1-4, 5-9, 10-14, 15-19, 20-24, 25-29, 30-34, 35-39, 40-44, 45-49, 50-54, 55-59, 60-64, 65-69, 70-74, 75-79, 80+, No age, Total, Male, Female, objId og area. 
+Se: https://github.com/Digital-Methods-HASS/Sofie_Kristiane_Emilie_Eksamen/tree/main/finale_project/data 
+
+amternes_koordinater
+Google Sheet med koordinater for de fire benyttede amter. Oprettet af Sofie, Kristiane og Emilie. Koordinater udtrukket fra Google Maps. 
+Datasættet indeholder følgende kolonner: Stednavn, Koordinater, Breddegrader og Længdegrader. 
+Se https://docs.google.com/spreadsheets/d/1wWFXoOcPVildEGEWJXmSwB7yMnzd51820B3E2bKkjr8/edit?gid=148633452#gid=148633452  
+
+AmtPopulation.xlsx
+Overblik over indbyggertallet i amter i Danmark med periodiske mellemrum i perioden 1801 til 1916 indsamlet af Rasmus Kristoffer Pedersen og PandemiX.  
+Datasættet indeholder følgende kolonner: Amt, DigDagID, 1801, 1834, 1840, 1845, 1850, 1855, 1860, 1870, 1880, 1890, 1901, 1906, 1911 og 1916. 
+Se https://github.com/PandemiXcenter/SignatureFeatures19thCentury/tree/main/Data 
+
