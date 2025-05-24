@@ -1,9 +1,27 @@
 #finale_project indhold:
-##Mapper:
-###data
+Mapper:
+- data
 data mappen indeholder relevant data og links til data, som er blevet brugt til udarbejdelse af projektet.
 
-###figures
+- figures
 figures mappen indeholder figure, visualiseringer/grafer og kort, som er udarbejdet i RStudio (RProject og Rmd).
 
-## Software Licens:
+
+Rmd:
+- Udvikling_Af_Dødsfald_I_Fire_Danske_Amter_1853.Rmd
+
+Rproj:
+- Udvikling_Af_Dødsfald_I_Fire_Danske_Amter_1853.Rproj
+
+html:
+- Udvikling_Af_Dødsfald_I_Fire_Danske_Amter_1853.html
+
+htmlpreview:
+- Udvikling_Af_Dødsfald_I_Fire_Danske_Amter_1853.htmlpreview
+https://htmlpreview.github.io/?https://github.com/Digital-Methods-HASS/Sofie_Kristiane_Emilie_Eksamen/blob/main/finale_project/Udvikling_Af_D%C3%B8dsfald_I_Fire_Danske_Amter_1853.html 
+(OBS!htmlpreview understøtter ikke visningen af de interaktive leaflet kort, samt rulle-oversigtspanelet med underoverskrifter, som vi har udarbejdet. 
+Disse kan tilgås ved at downloade RProjektet og kører Rmd.-filen.)
+
+
+Licens:
+Udvikling af Dødsfald i Fire Danske Amter, 1853 © 2025 by Sofie Schmidt Madsen, Emilie Andersen og Kristiane Morbech Clausen is licensed under CC BY-NC 4.0 
