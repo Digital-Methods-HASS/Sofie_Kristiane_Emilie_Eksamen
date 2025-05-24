@@ -1,1 +1,10 @@
+#regex_openrefine_assignment indeholder:
+Mapper:
+- data
+data mappen indeholder relevant data og links til data, som er blevet brugt til udarbejdelse af opgaven.
 
+Yderligere indhold:
+
+pdf:
+- regex_openrefine_assignment.pdf
+Pdf'en er vores skriftlige besvarelse af regex-openrefine assignment (Uge 8)
