@@ -1,0 +1,9 @@
+#regex_openrefine_assignment/data indeholder:
+
+json-filer:
+- Assigment_Week_8_Delopgave_4.json
+- Assignment_Week_8_Delopgave_5.json
+
+csv-filer:
+- Assignment_Week_8_Delopgave_4.csv (SAFI_openrefine.csv)
+- Assignment_Week_8_Delopgave_5.csv (1801 Aarhus consensus datasæt)
