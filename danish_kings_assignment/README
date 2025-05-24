@@ -1,1 +1,24 @@
 #danish_kings_assignment indeholder:
+Mapper:
+- data
+data mappen indeholder relevant data og links til data, som er blevet brugt til udarbejdelse af projektet.
+
+- figures
+figures mappen indeholder figure, visualiseringer/grafer og kort, som er udarbejdet i RStudio (RProject og Rmd).
+
+Yderligere indhold:
+
+Rmd:
+- DanishMonarchs.Rmd
+
+Rproj:
+- DM.Rproj
+
+html:
+- DanishMonarchs.html
+
+htmlpreview:
+- DanishMonarchs.htmlpreview
+https://htmlpreview.github.io/?https://github.com/Digital-Methods-HASS/Sofie_Kristiane_Emilie_Eksamen/blob/main/danish_kings_assignment/DanishMonarchs.html
+(OBS!htmlpreview understøtter ikke visningen af rulle-oversigtspanelet med underoverskrifter, som vi har udarbejdet. 
+Dette kan tilgås ved at downloade RProjektet og kører Rmd.-filen.)
