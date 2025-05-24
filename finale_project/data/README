@@ -2,6 +2,8 @@ Vores benyttede datasæt er lavet ud fra data fra:
 Rasmus Kristoffer Pedersen og PandemiX Center of Excellence, Roskilde Universitet, Danmark
 https://github.com/PandemiXcenter/SignatureFeatures19thCentury/tree/main
 
+gitHub_ed.ipynb
+Python-scriptet til samling af datasæt udarbejdet af Søren Kølholt Poder 
 
 118809_Odense_Amt_all_years.csv
 Overblikket over antallet af dødsfald for Odense Amt fra 1810-1915. Data indsamlet og bearbejdet af Rasmus Kristoffer Pedersen og PandemiX. Samlet i en samlet csv.-fil af Søren Kølholt Poder. 
@@ -35,4 +37,3 @@ AmtPopulation.xlsx
 Overblik over indbyggertallet i amter i Danmark med periodiske mellemrum i perioden 1801 til 1916 indsamlet af Rasmus Kristoffer Pedersen og PandemiX.  
 Datasættet indeholder følgende kolonner: Amt, DigDagID, 1801, 1834, 1840, 1845, 1850, 1855, 1860, 1870, 1880, 1890, 1901, 1906, 1911 og 1916. 
 Se https://github.com/PandemiXcenter/SignatureFeatures19thCentury/tree/main/Data 
-
