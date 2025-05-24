@@ -1,1 +1,16 @@
+#finale_project/figures indholder:
 
+html:
+- danmark_amt_kort.html (Lagddelt kort med amternes placering)
+- danmark_kort.html (Grundkort)
+(OBS! htmlpreview i mappen finale_project understøtter ikke visning af kortene lavet i RStudio/Leaflet.
+For at kunne se korteneskal du downloade Rproj. og Rmd. og knit filen til en html.)
+
+Figure fra Rmd. script i .png-format:
+- facet_plot_dødsfald_de_fire_amter_1810_til_1915.png (Figur 2)
+- overdødelighed_pr._100.000_indbygger_Staden_København_1853.png (Figur 6)
+- samlet_oversigt_over_dødsfald_de_fire_amter_1810_til_1915.png (Figur 3)
+- samlet_oversigt_over_dødsfald_de_fire_amter_1853.png (Figur 4)
+- samlet_oversigt_over_dødsfald_de_fire_amter_juni_til_september_1853.png (Figur 5)
+
+(Figur 1 er et screenshot af danmark_amt_kort.html (Lagddelt kort med amternes placering), da word ikke understøtter interaktive kort)
