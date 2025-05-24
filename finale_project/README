@@ -7,6 +7,7 @@ data mappen indeholder relevant data og links til data, som er blevet brugt til 
 figures mappen indeholder figure, visualiseringer/grafer og kort, som er udarbejdet i RStudio (RProject og Rmd).
 
 
+Yderligere indhold:
 Rmd:
 - Udvikling_Af_Dødsfald_I_Fire_Danske_Amter_1853.Rmd
 
