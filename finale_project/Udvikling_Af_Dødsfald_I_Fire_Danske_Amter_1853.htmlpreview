@@ -1,4 +1,5 @@
 Link til htmlpreview:
 https://htmlpreview.github.io/?https://github.com/Digital-Methods-HASS/Sofie_Kristiane_Emilie_Eksamen/blob/main/finale_project/Udvikling_Af_D%C3%B8dsfald_I_Fire_Danske_Amter_1853.html
 
-htmlpreview understøtter ikke visningen af de interaktive leaflet kort, som vi har udarbejdet. Disse kan tilgås ved at downloade RProjektet og kører Rmd.-filen.
+(OBS!htmlpreview understøtter ikke visningen af de interaktive leaflet kort, samt rulle-oversigtspanelet med underoverskrifter, som vi har udarbejdet. 
+Disse kan tilgås ved at downloade RProjektet og kører Rmd.-filen.)
