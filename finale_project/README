@@ -1,1 +1,9 @@
+#finale_project indhold:
+##Mapper:
+###data
+data mappen indeholder relevant data og links til data, som er blevet brugt til udarbejdelse af projektet.
+
+###figures
+figures mappen indeholder figure, visualiseringer/grafer og kort, som er udarbejdet i RStudio (RProject og Rmd).
+
 ## Software Licens:
