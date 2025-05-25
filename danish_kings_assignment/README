@@ -22,7 +22,3 @@ htmlpreview:
 https://htmlpreview.github.io/?https://github.com/Digital-Methods-HASS/Sofie_Kristiane_Emilie_Eksamen/blob/main/danish_kings_assignment/DanishMonarchs.html
 (OBS!htmlpreview understøtter ikke visningen af rulle-oversigtspanelet med underoverskrifter, som vi har udarbejdet. 
 Dette kan tilgås ved at downloade RProjektet og kører Rmd.-filen.)
-
-pdf:
-- danish_kings_assignment.pdf
-Pdf'en er vores skriftlige besvarelse af danish kings assignment (Uge 10)
