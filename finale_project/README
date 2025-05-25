@@ -23,9 +23,5 @@ https://htmlpreview.github.io/?https://github.com/Digital-Methods-HASS/Sofie_Kri
 (OBS!htmlpreview understøtter ikke visningen af de interaktive leaflet kort, samt rulle-oversigtspanelet med underoverskrifter, som vi har udarbejdet. 
 Disse kan tilgås ved at downloade RProjektet og kører Rmd.-filen.)
 
-pdf:
-- finale_project.pdf
-Pdf'en er vores skriftlige udarbejdelse af projektet
-
 Licens:
 Udvikling af Dødsfald i Fire Danske Amter, 1853 © 2025 by Sofie Schmidt Madsen, Emilie Andersen og Kristiane Morbech Clausen is licensed under CC BY-NC 4.0 
