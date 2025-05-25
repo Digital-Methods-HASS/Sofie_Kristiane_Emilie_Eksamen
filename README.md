@@ -12,3 +12,4 @@ Dette GitHub repository indeholder materiale tilhørende portofolio-eksamen for 
 - Danish kings assignment (W10) - (Mappe: danish_kings_assignment)
 - Visualisation assignment (W12) - (Mappe: visualisation_assigment)  
 - Freechoice final digital project (W22) - (Mappe: finale_project)
+- Digitale arkiver og metoder eksamen portfolio - (Pdf: digitale_arkiver_og_metoder_eksamen_portfolio.pdf)
