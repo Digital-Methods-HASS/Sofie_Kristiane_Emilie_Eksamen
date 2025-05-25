@@ -3,7 +3,9 @@ Mapper:
 - data
 data mappen indeholder relevant data og links til data, som er blevet brugt til udarbejdelse af opgaven.
 
-Yderligere indhold:
+- figures
+figures mappen indeholder figure / visualiseringer, som er udarbejdet i RStudio (RProject og Rmd).
+
 Yderligere indhold:
 Rmd:
 - sentiment_analysis_got.Rmd
