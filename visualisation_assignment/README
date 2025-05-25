@@ -20,7 +20,3 @@ htmlpreview:
 https://htmlpreview.github.io/?https://github.com/Digital-Methods-HASS/Sofie_Kristiane_Emilie_Eksamen/blob/main/visualisation_assignment/sentiment_analysis_got.html
 (OBS!htmlpreview understøtter ikke visningen af rulle-oversigtspanelet med underoverskrifter, som vi har udarbejdet. 
 Dette kan tilgås ved at downloade RProjektet og kører Rmd.-filen.)
-
-pdf:
-- visualisation_assignment.pdf
-Pdf'en er vores skriftlige besvarelse af visualisation_assignment (Uge 12)
